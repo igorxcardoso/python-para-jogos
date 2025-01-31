@@ -2,7 +2,7 @@
 
 **Autor:** Igor Silva de Oliveira Cardoso  
 **Ano:** 2025  
-**Propósito:** Ensinar programação Python de maneira prática e divertida, especialmente para professores que desejam inspirar seus alunos por meio da criação de jogos interativos.
+**Propósito:** 
 
 ---
 
@@ -21,33 +21,6 @@ Este livro é um guia prático para aprender e ensinar Python. Ele combina teori
 ---
 
 ## 📋 Estrutura do Livro
-
-1. **Introdução**  
-   Apresenta o propósito do livro, as vantagens de aprender Python e como o livro está organizado.
-
-2. **Construindo a Base**  
-   Introdução às estruturas sequenciais, operadores, variáveis, e entrada de dados.
-
-3. **Decisões em Programação**  
-   Estruturas condicionais, operadores lógicos, e tabelas verdade.
-
-4. **Dominando Repetições**  
-   Introdução aos laços de repetição como `for` e `while`.
-
-5. **Trabalhando com Listas**  
-   Manipulação de listas, ordenação, e operações comuns.
-
-6. **Estruturas de Dados: Dicionários**  
-   Manipulação de dicionários e operações úteis.
-
-7. **Desenvolvendo com Funções**  
-   Declaração e uso de funções.
-
-8. **Introdução ao Pygame**  
-   Instalação e configuração do Pygame, além de exercícios práticos.
-
-9. **Projetos Práticos: Criação de Jogos**  
-   Desenvolvimento passo a passo de jogos interativos.
 
 ---
 
