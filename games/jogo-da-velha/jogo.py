@@ -19,7 +19,7 @@ while True:
     [0, 0, 0, 0],
     [0, 0, 0, 0],
   ]
-  jogo_da_velha.tabuleiro(janela.window, matriz)
+  jogo_da_velha.tabuleiro(janela.configuracao, matriz)
 
   # Atualiza a janela
   janela.atualizar()

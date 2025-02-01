@@ -2,16 +2,16 @@
 import pygame
 
 class Janela:
-  window = None
+  configuracao = None
   # Cores disponíveis
   COLORS: dict = {
     'branco': (255, 255, 255),
     'cinza': (150, 150, 150),
-    'preto': (  0,   0,   0),
-    'vermelho': (255,   0,   0),
-    'verde': (  0, 255,   0),
-    'azul': (  0,   0, 255),
-    'laranja': (255, 165,   0)
+    'preto': (0, 0, 0),
+    'vermelho': (255, 0, 0),
+    'verde': (0, 255, 0),
+    'azul': (0, 0, 255),
+    'laranja': (255, 165, 0)
   }
   # Resoluções disponíveis
   RESOLUTIONS: dict = {
@@ -30,13 +30,13 @@ class Janela:
       self.window_title = kwargs.pop('titulo_da_janela', 'Nome da Janela')
 
       # Inicializa a janela 
-      self.window = pygame.display.set_mode(self.RESOLUTIONS[self.screen_resolution])
+      self.configuracao = pygame.display.set_mode(self.RESOLUTIONS[self.screen_resolution])
 
       # Define o título da janela
       pygame.display.set_caption(title=self.window_title)
 
       # Preenche a janela com a cor escolhida
-      self.window.fill(self.COLORS[self.color])
+      self.configuracao.fill(self.COLORS[self.color])
 
       # Informações do mouse
       self.mouse_0 = {'x': None, 'y': None, 'left button': None, 'clicked': False}
