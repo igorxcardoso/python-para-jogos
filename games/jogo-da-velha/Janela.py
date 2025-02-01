@@ -24,11 +24,11 @@ class Janela:
   window_title: str
 
   def __init__(self, **kwargs) -> None:
-    try:
-      self.screen_resolution = kwargs.pop('resolucao_da_tela', 'CUSTOM')
-      self.color = kwargs.pop('cor_da_janela', 'azul')
-      self.window_title = kwargs.pop('titulo_da_janela', 'Nome da Janela')
+    self.screen_resolution = kwargs.pop('resolucao_da_tela', 'CUSTOM')
+    self.color = kwargs.pop('cor_da_janela', 'azul')
+    self.window_title = kwargs.pop('titulo_da_janela', 'Nome da Janela')
 
+    try:
       # Inicializa a janela 
       self.configuracao = pygame.display.set_mode(self.RESOLUTIONS[self.screen_resolution])
 
@@ -62,3 +62,8 @@ class Janela:
     if event.type == pygame.KEYDOWN:
       if pygame.key.name(event.key) == 'escape':
         ... 
+
+    self.__preencher_janela()
+
+  def __preencher_janela(self) -> None:
+    pygame.draw.rect(self.configuracao, self.COLORS[self.color], (0, 0, self.configuracao.get_width(), self.configuracao.get_height()))
