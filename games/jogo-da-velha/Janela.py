@@ -1,31 +1,32 @@
+# -*- coding : utf-8 -*-
 import pygame
 
-
 class Janela:
+  window = None
+  # Cores disponíveis
+  COLORS = {
+    'branco': (255, 255, 255),
+    'cinza': (150, 150, 150),
+    'preto': (  0,   0,   0),
+    'vermelho': (255,   0,   0),
+    'verde': (  0, 255,   0),
+    'azul': (  0,   0, 255),
+    'laranja': (255, 165,   0)
+  }
+  # Resoluções disponíveis
+  RESOLUTIONS = {
+    'HD': (1280, 720),
+    'FHD': (1920, 1080),
+    'CUSTOM': (900, 700)
+  }
+
   def __init__(self, resolucao_da_tela='HD', cor_da_janela='black',  titulo_da_janela='pygame window', fps=60):
     try:
-      # Janelas disponíveis
-      self.resolutions = {
-        'HD': (1280, 720),
-        'FHD': (1920, 1080),
-        'CUSTOM': (900, 700)
-      }
-      self.window = pygame.display.set_mode(self.resolutions[resolucao_da_tela])
+      self.window = pygame.display.set_mode(self.RESOLUTIONS[resolucao_da_tela])
     
       pygame.display.set_caption(title=titulo_da_janela)
 
-      # Cores padrão
-      self.colors = {
-        'branco': (255, 255, 255),
-        'cinza': (150, 150, 150),
-        'preto': (  0,   0,   0),
-        'vermelho': (255,   0,   0),
-        'verde': (  0, 255,   0),
-        'azul': (  0,   0, 255),
-        'laranja': (255, 165,   0)
-      }
-
-      self.window.fill(self.colors[cor_da_janela])
+      self.window.fill(self.COLORS[cor_da_janela])
 
       # Informações do mouse
       self.mouse_0 = {'x': None, 'y': None, 'left button': None, 'clicked': False}
