@@ -49,8 +49,18 @@ class JogoDaVelha:
       for col in range(self.cols):
         x = self.offset + col * cell_size + cell_size // 2 - 17  # Ajuste de posição
         y = self.offset + row * cell_size + cell_size // 2 - 2 # Ajuste de posição
-        text = font.render(f"({row},{col})", True, self.COLORS['verde'])  # Texto da posição
+        text = font.render(f"({row+1},{col+1})", True, self.COLORS['azul'])  # Texto da posição
         window.blit(text, (x, y))  # Desenha o texto na tela
+
+    # Desenha a borda do tabuleiro
+    board_width = self.cols * cell_size
+    board_height = self.rows * cell_size
+    pygame.draw.rect(window, self.COLORS[cor], (self.offset - 5, self.offset - 5, board_width + 10, board_height + 10), 9)
+
+    # Exibe o tamanho da matriz abaixo do tabuleiro
+    text = font.render(f"{self.rows}x{self.cols}", True, self.COLORS['azul'])
+    text_rect = text.get_rect(center=(self.offset + (self.cols * cell_size) // 2, self.offset + self.rows * cell_size + 30))
+    window.blit(text, text_rect)
 
 
   def verifica_matriz(self, matriz) -> bool:
