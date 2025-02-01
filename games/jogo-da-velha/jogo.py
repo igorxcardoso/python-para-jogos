@@ -7,12 +7,8 @@ janela = Janela(resolucao_da_tela='CUSTOM', cor_da_janela='vermelho', titulo_da_
 
 # Cria a janela
 while True:
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      pygame.quit()
-      quit()
-    if event.type == pygame.KEYDOWN:
-      if pygame.key.name(event.key) == 'escape':
-        ...
+  # Verifica os eventos da janela
+  janela.verificar_eventos()
 
+  # Atualiza a janela
   janela.atualizar()

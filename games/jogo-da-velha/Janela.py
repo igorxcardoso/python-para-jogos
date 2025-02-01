@@ -42,3 +42,12 @@ class Janela:
   
   def atualizar(self) -> None:
     pygame.display.update()
+  
+  def verificar_eventos(self) -> None:
+   for event in pygame.event.get():
+    if event.type == pygame.QUIT:
+      pygame.quit()
+      quit()
+    if event.type == pygame.KEYDOWN:
+      if pygame.key.name(event.key) == 'escape':
+        ... 
