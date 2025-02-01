@@ -22,6 +22,9 @@ class Janela:
   screen_resolution: str
   color: str
   window_title: str
+  mouse: dict
+  mouse_0: dict
+  last_click_status: tuple
 
   def __init__(self, **kwargs) -> None:
     self.screen_resolution = kwargs.pop('resolucao_da_tela', 'CUSTOM')
@@ -67,3 +70,23 @@ class Janela:
 
   def __preencher_janela(self) -> None:
     pygame.draw.rect(self.configuracao, self.COLORS[self.color], (0, 0, self.configuracao.get_width(), self.configuracao.get_height()))
+
+
+  def __mouse_clicou(self, input):
+    if self.last_click_status == input:
+      return False, False, False
+
+    left_button = input[0] and not self.last_click_status[0]
+    center_button = input[1] and not self.last_click_status[1]
+    right_button = input[2] and not self.last_click_status[2]
+
+    self.last_click_status = input
+    return left_button, center_button, right_button
+
+
+  def informacoes_do_mouse(self) -> None:
+    mouse_position = pygame.mouse.get_pos()
+    mouse_input = pygame.mouse.get_pressed()
+    mouse_click = self.__mouse_clicou(mouse_input)
+    self.mouse = (mouse_position, mouse_input, mouse_click)
+    print(mouse_position, mouse_input, mouse_click)
