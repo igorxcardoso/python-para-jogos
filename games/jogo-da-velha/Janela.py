@@ -39,3 +39,6 @@ class Janela:
       self.game_difficulty = 0
     except:
       print('Erro ao criar a janela')
+  
+  def atualizar(self) -> None:
+    pygame.display.update()
