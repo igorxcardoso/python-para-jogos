@@ -43,7 +43,14 @@ while True:
   # Botões
   botao_de_novo_jogo = janela.botao((675, 225), (200, 75), 'verde', 'Novo Jogo')
   botao_de_reiniciar = janela.botao((675, 325), (200, 75), 'laranja', 'Reiniciar')
-  botao_de_sair = janela.botao((675, 425), (200, 75), 'vermelho', 'Sair')
+  botao_de_sair = janela.botao((695, 600), (150, 75), 'vermelho', 'Sair')
+
+  if botao_de_sair == 'Sair':
+    quit()
+  elif botao_de_reiniciar == 'Reiniciar':
+    jogo_da_velha.reiniciar_jogo()
+  elif botao_de_novo_jogo == 'Novo Jogo':
+    jogo_da_velha.novo_jogo()
 
   # Atualiza a janela
   janela.atualizar()

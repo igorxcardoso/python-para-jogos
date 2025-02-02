@@ -89,7 +89,7 @@ class Janela:
     mouse_input = pygame.mouse.get_pressed()
     mouse_click = self.__mouse_clicou(mouse_input)
     self.mouse = (mouse_position, mouse_input, mouse_click)
-    print(mouse_position, mouse_input, mouse_click)
+    # print(mouse_position, mouse_input, mouse_click)
 
 
   def botao(self, position, size, color, text, index_of_qtd=(1, 1), border_color='preto', border_width=5, font_color='preto', text_size=32):
@@ -115,7 +115,7 @@ class Janela:
     pygame.draw.rect(self.configuracao, self.COLORS[color], (x, y, size[0], size[1]))
 
     # Efeito Hover
-    if self.mouse_is_over(x, y, size):
+    if self.__mouse_is_over(x, y, size):
       self.transparent_surface(x, y, size[0], size[1])
 
     # Draw Button Border
@@ -129,6 +129,7 @@ class Janela:
     self.configuracao.blit(text_surface, (text_x, text_y))
 
     # Direção de clique
+    print(self.__mouse_is_over(x, y, size) and self.mouse[2][0])
     return text if self.__mouse_is_over(x, y, size) and self.mouse[2][0] else None
 
 

@@ -163,3 +163,18 @@ class JogoDaVelha:
 
       self.end_game = True
 
+  def novo_jogo(self):
+    if self.end_game == True:
+      self.tabuleiro_map = [['', '', ''], ['', '', ''], ['', '', '']]
+      self.turn = 'x'
+      self.end_game = False
+      self.count_end_game = 0
+
+  def reiniciar_jogo(self):
+      self.tabuleiro_map = [['', '', ''], ['', '', ''], ['', '', '']]
+      self.turn = 'x'
+      self.score = [0, 0]
+      self.end_game = False
+      self.count_end_game = 0
+
+
