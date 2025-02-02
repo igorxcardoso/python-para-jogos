@@ -122,3 +122,14 @@ class JogoDaVelha:
             self.tabuleiro_map[y][x] = self.turn
             self.turn = 'o' if self.turn == 'x' else 'x'
 
+  def desenha_x_e_o(self, janela, cor_do_x, cor_do_o):
+    for y in range(3):
+      for x in range(3):
+        if self.tabuleiro_map[y][x] == 'x':
+          pygame.draw.line(janela.configuracao, self.COLORS[cor_do_x], (self.offset + (x * 200) + 50, self.offset + (y * 200) + 50), \
+                                                  (self.offset + (x * 200) + 150, self.offset + (y * 200) + 150), 16)
+          pygame.draw.line(janela.configuracao, self.COLORS[cor_do_x], (self.offset + (x * 200) + 150, self.offset + (y * 200) + 50), \
+                                                  (self.offset + (x * 200) + 50, self.offset + (y * 200) + 150), 16)
+        elif self.tabuleiro_map[y][x] == 'o':
+          pygame.draw.circle(janela.configuracao, self.COLORS[cor_do_o], (self.offset + (x * 200) + 100, self.offset + (y * 200) + 100), 50, 16)
+
