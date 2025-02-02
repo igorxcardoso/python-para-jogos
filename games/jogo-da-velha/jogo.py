@@ -3,9 +3,14 @@ from Janela import Janela
 import pygame
 
 
-def verifica_fim_de_jogo(self):
-  ...
+def verifica_fim_de_jogo(matriz_atual):
+  campos_marcados = 0
+  for y in range(3):
+    for x in range(3):
+      if matriz_atual[y][x] != '':
+        campos_marcados += 1
 
+  return True if campos_marcados == 9 else False
 
 
 # Criação da janela para o jogo
@@ -26,9 +31,9 @@ while True:
 
   # Desenha o tabuleiro
   matriz = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
   ]
 
   # Desenha o tabuleiro
@@ -39,6 +44,12 @@ while True:
 
   # Verifica se houve vencedor
   jogo_da_velha.desenha_de_vitoria(janela)
+
+  # Matriz atual
+  matriz_atual = jogo_da_velha.matriz_do_tabuleiro
+
+  # Verifica se o jogo acabou
+  jogo_da_velha.fim_do_jogo = verifica_fim_de_jogo(matriz_atual)
 
   # Botões
   botao_de_novo_jogo = janela.botao((675, 225), (200, 75), 'verde', 'Novo Jogo')

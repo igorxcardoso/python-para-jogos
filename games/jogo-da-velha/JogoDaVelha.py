@@ -15,10 +15,9 @@ class JogoDaVelha:
   rows: int = 0
   cols: int = 0
   size: int = 0
-  end_game: bool = False
+  fim_do_jogo: bool = False
   turn: str = ''
   score: list = []
-  count_end_game: int = 0
   font: pygame.font.Font
   __cor_do_x: str
   __cor_do_o: str
@@ -27,15 +26,14 @@ class JogoDaVelha:
     pygame.font.init()
     self.font = pygame.font.SysFont("Courier New", 50, bold=True)
 
-    self.tabuleiro_map = [
+    self.matriz_do_tabuleiro = [
       ['', '', ''],
       ['', '', ''],
       ['', '', '']
     ]
     self.turn = 'x'
     self.score = [0, 0]
-    self.end_game = False
-    self.count_end_game = 0
+    self.fim_do_jogo = False
 
 
   def tabuleiro(self, window, matriz, cor='preto'):
@@ -120,8 +118,8 @@ class JogoDaVelha:
       for x in range(3):
         if mouse[0][0] >= self.offset + (x * 200) and mouse[0][0] < self.offset + (x * 200) + 200 and \
           mouse[0][1] >= self.offset + (y * 200) and mouse[0][1] < self.offset + (y * 200) + 200:
-          if mouse[2][0] == True and self.tabuleiro_map[y][x] == '' and self.end_game == False:
-            self.tabuleiro_map[y][x] = self.turn
+          if mouse[2][0] == True and self.matriz_do_tabuleiro[y][x] == '' and self.fim_do_jogo == False:
+            self.matriz_do_tabuleiro[y][x] = self.turn
             self.turn = 'o' if self.turn == 'x' else 'x'
 
 
@@ -130,12 +128,12 @@ class JogoDaVelha:
     self.__cor_do_o = cor_do_o
     for y in range(3):
       for x in range(3):
-        if self.tabuleiro_map[y][x] == 'x':
+        if self.matriz_do_tabuleiro[y][x] == 'x':
           pygame.draw.line(janela.configuracao, self.COLORS[cor_do_x], (self.offset + (x * 200) + 50, self.offset + (y * 200) + 50), \
                                                   (self.offset + (x * 200) + 150, self.offset + (y * 200) + 150), 16)
           pygame.draw.line(janela.configuracao, self.COLORS[cor_do_x], (self.offset + (x * 200) + 150, self.offset + (y * 200) + 50), \
                                                   (self.offset + (x * 200) + 50, self.offset + (y * 200) + 150), 16)
-        elif self.tabuleiro_map[y][x] == 'o':
+        elif self.matriz_do_tabuleiro[y][x] == 'o':
           pygame.draw.circle(janela.configuracao, self.COLORS[cor_do_o], (self.offset + (x * 200) + 100, self.offset + (y * 200) + 100), 50, 16)
 
 
@@ -152,34 +150,32 @@ class JogoDaVelha:
     ]
 
     for (a_row, a_col), (b_row, b_col), (c_row, c_col), start_pos, end_pos in lines:
-      if self.tabuleiro_map[a_row][a_col] == self.tabuleiro_map[b_row][b_col] == self.tabuleiro_map[c_row][c_col] != '':
+      if self.matriz_do_tabuleiro[a_row][a_col] == self.matriz_do_tabuleiro[b_row][b_col] == self.matriz_do_tabuleiro[c_row][c_col] != '':
         pygame.draw.line(janela.configuracao, self.COLORS['verde'], start_pos, end_pos, 9)
-        self.__add_point(self.tabuleiro_map[a_row][a_col])
+        self.__add_point(self.matriz_do_tabuleiro[a_row][a_col])
         return
 
 
   def __add_point(self, player):
-    if self.end_game == False:
+    if self.fim_do_jogo == False:
       if player == 'x':
         self.score[0] += 1
       else:
         self.score[1] += 1
 
-      self.end_game = True
+      self.fim_do_jogo = True
 
   def novo_jogo(self):
-    if self.end_game == True:
-      self.tabuleiro_map = [['', '', ''], ['', '', ''], ['', '', '']]
+    if self.fim_do_jogo == True:
+      self.matriz_do_tabuleiro = [['', '', ''], ['', '', ''], ['', '', '']]
       self.turn = 'x'
-      self.end_game = False
-      self.count_end_game = 0
+      self.fim_do_jogo = False
 
   def reiniciar_jogo(self):
-      self.tabuleiro_map = [['', '', ''], ['', '', ''], ['', '', '']]
+      self.matriz_do_tabuleiro = [['', '', ''], ['', '', ''], ['', '', '']]
       self.turn = 'x'
       self.score = [0, 0]
-      self.end_game = False
-      self.count_end_game = 0
+      self.fim_do_jogo = False
 
 
   def placar(self, window):
