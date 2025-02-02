@@ -122,6 +122,7 @@ class JogoDaVelha:
             self.tabuleiro_map[y][x] = self.turn
             self.turn = 'o' if self.turn == 'x' else 'x'
 
+
   def desenha_x_e_o(self, janela, cor_do_x, cor_do_o):
     for y in range(3):
       for x in range(3):
@@ -132,4 +133,33 @@ class JogoDaVelha:
                                                   (self.offset + (x * 200) + 50, self.offset + (y * 200) + 150), 16)
         elif self.tabuleiro_map[y][x] == 'o':
           pygame.draw.circle(janela.configuracao, self.COLORS[cor_do_o], (self.offset + (x * 200) + 100, self.offset + (y * 200) + 100), 50, 16)
+
+
+  def desenha_de_vitoria(self, janela):
+    lines = [
+      ((0, 0), (0, 1), (0, 2), (self.offset + 25, self.offset + 100), (self.offset + 575, self.offset + 100)),  # Horizontal 1
+      ((1, 0), (1, 1), (1, 2), (self.offset + 25, self.offset + 300), (self.offset + 575, self.offset + 300)),  # Horizontal 2
+      ((2, 0), (2, 1), (2, 2), (self.offset + 25, self.offset + 500), (self.offset + 575, self.offset + 500)),  # Horizontal 3
+      ((0, 0), (1, 0), (2, 0), (self.offset + 100, self.offset + 25), (self.offset + 100, self.offset + 575)),  # Vertical 1
+      ((0, 1), (1, 1), (2, 1), (self.offset + 300, self.offset + 25), (self.offset + 300, self.offset + 575)),  # Vertical 2
+      ((0, 2), (1, 2), (2, 2), (self.offset + 500, self.offset + 25), (self.offset + 500, self.offset + 575)),  # Vertical 3
+      ((0, 0), (1, 1), (2, 2), (self.offset + 25, self.offset + 25), (self.offset + 575, self.offset + 575)),  # Diagonal 1
+      ((0, 2), (1, 1), (2, 0), (self.offset + 575, self.offset + 25), (self.offset + 25, self.offset + 575)),  # Diagonal 2
+    ]
+
+    for (a_row, a_col), (b_row, b_col), (c_row, c_col), start_pos, end_pos in lines:
+      if self.tabuleiro_map[a_row][a_col] == self.tabuleiro_map[b_row][b_col] == self.tabuleiro_map[c_row][c_col] != '':
+        pygame.draw.line(janela.configuracao, self.COLORS['verde'], start_pos, end_pos, 9)
+        self.__add_point(self.tabuleiro_map[a_row][a_col])
+        return
+
+
+  def __add_point(self, player):
+    if self.end_game == False:
+      if player == 'x':
+        self.score[0] += 1
+      else:
+        self.score[1] += 1
+
+      self.end_game = True
 
