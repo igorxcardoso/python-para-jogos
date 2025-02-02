@@ -52,5 +52,8 @@ while True:
   elif botao_de_novo_jogo == 'Novo Jogo':
     jogo_da_velha.novo_jogo()
 
+  # Placar
+  jogo_da_velha.placar(janela)
+
   # Atualiza a janela
   janela.atualizar()

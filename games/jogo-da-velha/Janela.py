@@ -129,7 +129,6 @@ class Janela:
     self.configuracao.blit(text_surface, (text_x, text_y))
 
     # Direção de clique
-    print(self.__mouse_is_over(x, y, size) and self.mouse[2][0])
     return text if self.__mouse_is_over(x, y, size) and self.mouse[2][0] else None
 
 

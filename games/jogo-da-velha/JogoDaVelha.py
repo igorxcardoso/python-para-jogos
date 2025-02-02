@@ -20,6 +20,8 @@ class JogoDaVelha:
   score: list = []
   count_end_game: int = 0
   font: pygame.font.Font
+  __cor_do_x: str
+  __cor_do_o: str
 
   def __init__(self):
     pygame.font.init()
@@ -124,6 +126,8 @@ class JogoDaVelha:
 
 
   def desenha_x_e_o(self, janela, cor_do_x, cor_do_o):
+    self.__cor_do_x = cor_do_x
+    self.__cor_do_o = cor_do_o
     for y in range(3):
       for x in range(3):
         if self.tabuleiro_map[y][x] == 'x':
@@ -177,4 +181,18 @@ class JogoDaVelha:
       self.end_game = False
       self.count_end_game = 0
 
+
+  def placar(self, window):
+    pygame.draw.line(window.configuracao, self.COLORS[self.__cor_do_x], (700, 60), (750, 110), 9)
+    pygame.draw.line(window.configuracao, self.COLORS[self.__cor_do_x], (750, 60), (700, 110), 9)
+
+    pygame.draw.circle(window.configuracao, self.COLORS[self.__cor_do_o], (725, 175), 25, 9)
+
+    # Pontos do X
+    score_x = self.font.render(str(self.score[0]), True, self.COLORS['preto'])
+    window.configuracao.blit(score_x, (775, 60))
+
+    # Pontos do O
+    score_o = self.font.render(str(self.score[1]), True, self.COLORS['preto'])
+    window.configuracao.blit(score_o, (775, 150))
 
