@@ -40,5 +40,10 @@ while True:
   # Verifica se houve vencedor
   jogo_da_velha.desenha_de_vitoria(janela)
 
+  # Botões
+  botao_de_novo_jogo = janela.botao((675, 225), (200, 75), 'verde', 'Novo Jogo')
+  botao_de_reiniciar = janela.botao((675, 325), (200, 75), 'laranja', 'Reiniciar')
+  botao_de_sair = janela.botao((675, 425), (200, 75), 'vermelho', 'Sair')
+
   # Atualiza a janela
   janela.atualizar()

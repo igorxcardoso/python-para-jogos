@@ -90,3 +90,56 @@ class Janela:
     mouse_click = self.__mouse_clicou(mouse_input)
     self.mouse = (mouse_position, mouse_input, mouse_click)
     print(mouse_position, mouse_input, mouse_click)
+
+
+  def botao(self, position, size, color, text, index_of_qtd=(1, 1), border_color='preto', border_width=5, font_color='preto', text_size=32):
+    width = self.configuracao.get_width()
+    height = self.configuracao.get_height()
+
+    if isinstance(position, tuple):
+      x, y = position
+    elif position == 'center':
+      x = (width / 2) - (size[0] / 2)
+      if index_of_qtd[1] > 1:
+        btn_height = size[1] * index_of_qtd[1]
+        gap_height = (size[1] / 2) * (index_of_qtd[1] - 1)
+        total_height = btn_height + gap_height
+        margin_y = (height - total_height) / 2
+        y = margin_y + ((size[1] * 1.5) * (index_of_qtd[0] - 1))
+      else:
+        y = (height / 2) - (size[1] / 2)
+    else:
+      raise ValueError("Invalid position type. Must be tuple or 'center'.")
+
+    # Draw Button Background
+    pygame.draw.rect(self.configuracao, self.COLORS[color], (x, y, size[0], size[1]))
+
+    # Efeito Hover
+    if self.mouse_is_over(x, y, size):
+      self.transparent_surface(x, y, size[0], size[1])
+
+    # Draw Button Border
+    pygame.draw.rect(self.configuracao, self.COLORS[border_color], (x, y, size[0], size[1]), border_width)
+
+    # Draw Button Text
+    font = pygame.font.SysFont("Consolas", text_size, bold=True)
+    text_surface = font.render(text, True, self.COLORS[font_color])
+    text_x = x + (size[0] / 2) - (text_surface.get_width() / 2)
+    text_y = y + (size[1] / 2) - (text_surface.get_height() / 2)
+    self.configuracao.blit(text_surface, (text_x, text_y))
+
+    # Direção de clique
+    return text if self.__mouse_is_over(x, y, size) and self.mouse[2][0] else None
+
+
+  def __mouse_is_over(self, x, y, size):
+    mx, my = self.mouse[0]
+    return x <= mx <= x + size[0] and y <= my <= y + size[1]
+
+
+  def transparent_surface(self, position_x, position_y, size_x, size_y):
+    surface = pygame.Surface((size_x, size_y))
+    surface.set_alpha(128)
+    surface.fill(self.COLORS['branco'])
+    self.configuracao.blit(surface, (position_x, position_y))
+
