@@ -9,11 +9,31 @@ class JogoDaVelha:
     'vermelho': (255, 0, 0),
     'verde': (0, 255, 0),
     'azul': (0, 0, 255),
-    'laranja': (255, 165, 0)
+    'laranja': (255, 165, 0),
+    'azul claro': (200, 200, 255)
   }
   rows: int = 0
   cols: int = 0
   size: int = 0
+  end_game: bool = False
+  turn: str = ''
+  score: list = []
+  count_end_game: int = 0
+  font: pygame.font.Font
+
+  def __init__(self):
+    pygame.font.init()
+    self.font = pygame.font.SysFont("Courier New", 50, bold=True)
+
+    self.tabuleiro_map = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ]
+    self.turn = 'x'
+    self.score = [0, 0]
+    self.end_game = False
+    self.count_end_game = 0
 
 
   def tabuleiro(self, window, matriz, cor='preto'):
@@ -81,3 +101,24 @@ class JogoDaVelha:
         return False
 
     return True
+
+
+  def __tabuleiro_hover(self, window, mouse):
+    for y in range(3):
+      for x in range(3):
+        if mouse[0][0] >= self.offset + (x * 200) and mouse[0][0] < self.offset + (x * 200) + 200 and \
+          mouse[0][1] >= self.offset + (y * 200) and mouse[0][1] < self.offset + (y * 200) + 200:
+          pygame.draw.rect(window, self.COLORS['azul claro'], (self.offset + (x * 200), self.offset + (y * 200), 200, 200))
+
+
+  def evento_de_clique(self, janela) -> None:
+    self.__tabuleiro_hover(janela.configuracao, janela.mouse)
+    mouse = janela.mouse
+    for y in range(3):
+      for x in range(3):
+        if mouse[0][0] >= self.offset + (x * 200) and mouse[0][0] < self.offset + (x * 200) + 200 and \
+          mouse[0][1] >= self.offset + (y * 200) and mouse[0][1] < self.offset + (y * 200) + 200:
+          if mouse[2][0] == True and self.tabuleiro_map[y][x] == '' and self.end_game == False:
+            self.tabuleiro_map[y][x] = self.turn
+            self.turn = 'o' if self.turn == 'x' else 'x'
+

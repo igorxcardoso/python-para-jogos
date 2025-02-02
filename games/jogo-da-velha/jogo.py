@@ -17,8 +17,9 @@ jogo_da_velha = JogoDaVelha()
 while True:
   # Verifica os eventos da janela
   janela.verificar_eventos()
-
   janela.informacoes_do_mouse()
+
+  jogo_da_velha.evento_de_clique(janela)
 
   # Desenha o tabuleiro
   matriz = [
