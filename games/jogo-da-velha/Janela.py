@@ -58,7 +58,6 @@ class Janela:
       print('Erro ao criar a janela')
   
   def atualizar(self) -> None:
-    self.verificar_eventos()
     pygame.display.update()
   
   def verificar_eventos(self) -> None:
@@ -95,6 +94,8 @@ class Janela:
     mouse_click = self.__mouse_clicou(mouse_input)
     self.mouse = (mouse_position, mouse_input, mouse_click)
     # print(mouse_position, mouse_input, mouse_click)
+
+    self.verificar_eventos()
 
 
   def botao(self, position, size, color, text, index_of_qtd=(1, 1), border_color='preto', border_width=5, font_color='preto', text_size=32):
