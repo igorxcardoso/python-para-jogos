@@ -1,6 +1,6 @@
+# -*- coding : utf-8 -*-
 from JogoDaVelha import JogoDaVelha
 from Janela import Janela
-import pygame
 
 
 def verifica_fim_de_jogo(matriz_atual):
@@ -37,7 +37,7 @@ while True:
   ]
 
   # Desenha o tabuleiro
-  jogo_da_velha.tabuleiro(janela.configuracao, matriz)
+  jogo_da_velha.tabuleiro(janela, matriz)
 
   # Desenha os X e O
   jogo_da_velha.desenha_x_e_o(janela, 'vermelho', 'azul')

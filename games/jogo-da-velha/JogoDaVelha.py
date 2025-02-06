@@ -39,12 +39,12 @@ class JogoDaVelha:
   def tabuleiro(self, window, matriz, cor='preto'):
     if self.verifica_matriz(matriz):
       if self.size == 3:
-        pygame.draw.line(window, self.COLORS[cor], (self.offset + 200, self.offset), (self.offset + 200, self.offset + 600), 9)
-        pygame.draw.line(window, self.COLORS[cor], (self.offset + 400, self.offset), (self.offset + 400, self.offset + 600), 9)
-        pygame.draw.line(window, self.COLORS[cor], (self.offset, self.offset + 200), (self.offset + 600, self.offset + 200), 9)
-        pygame.draw.line(window, self.COLORS[cor], (self.offset, self.offset + 400), (self.offset + 600, self.offset + 400), 9)
+        pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset + 200, self.offset), (self.offset + 200, self.offset + 600), 9)
+        pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset + 400, self.offset), (self.offset + 400, self.offset + 600), 9)
+        pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset, self.offset + 200), (self.offset + 600, self.offset + 200), 9)
+        pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset, self.offset + 400), (self.offset + 600, self.offset + 400), 9)
       else:
-        self.tabuleiro_didatico(window, cor)
+        self.tabuleiro_didatico(window.configuracao, cor)
     else:
       print('Matriz inválida')
 
@@ -185,6 +185,7 @@ class JogoDaVelha:
     pygame.draw.circle(window.configuracao, self.COLORS[self.__cor_do_o], (725, 175), 25, 9)
 
     # Pontos do X
+    print(self.score)
     score_x = self.font.render(str(self.score[0]), True, self.COLORS['preto'])
     window.configuracao.blit(score_x, (775, 60))
 
