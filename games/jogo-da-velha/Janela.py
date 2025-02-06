@@ -85,6 +85,7 @@ class Janela:
 
 
   def informacoes_do_mouse(self) -> None:
+    self.verificar_eventos()
     mouse_position = pygame.mouse.get_pos()
     mouse_input = pygame.mouse.get_pressed()
     mouse_click = self.__mouse_clicou(mouse_input)

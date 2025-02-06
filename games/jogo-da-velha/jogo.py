@@ -13,16 +13,13 @@ def verifica_fim_de_jogo(matriz_atual):
   return True if campos_marcados == 9 else False
 
 
-# Criação da janela para o jogo
+# Inicialização de uma janela
 janela = Janela(resolucao_da_tela='CUSTOM', cor_da_janela='branco', titulo_da_janela='Jogo da Velha')
 
+# Inicialização do jogo da velha
 jogo_da_velha = JogoDaVelha()
 
-# Cria a janela
 while True:
-  # Verifica os eventos da janela
-  janela.verificar_eventos()
-
   # Informações do mouse
   janela.informacoes_do_mouse()
 
@@ -36,7 +33,6 @@ while True:
     ['', '', '']
   ]
 
-  # Desenha o tabuleiro
   jogo_da_velha.tabuleiro(janela, matriz)
 
   # Desenha os X e O
