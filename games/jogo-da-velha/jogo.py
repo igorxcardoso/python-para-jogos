@@ -38,9 +38,6 @@ while True:
   # Desenha os X e O
   jogo_da_velha.desenha_x_e_o(janela, 'vermelho', 'azul')
 
-  # Verifica se houve vencedor
-  jogo_da_velha.desenha_de_vitoria(janela)
-
   # Matriz atual
   matriz_atual = jogo_da_velha.matriz_do_tabuleiro
 

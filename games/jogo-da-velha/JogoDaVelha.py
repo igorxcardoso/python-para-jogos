@@ -136,6 +136,9 @@ class JogoDaVelha:
         elif self.matriz_do_tabuleiro[y][x] == 'o':
           pygame.draw.circle(janela.configuracao, self.COLORS[cor_do_o], (self.offset + (x * 200) + 100, self.offset + (y * 200) + 100), 50, 16)
 
+    # Verifica se houve vencedor
+    self.desenha_de_vitoria(janela)
+
 
   def desenha_de_vitoria(self, janela):
     lines = [
