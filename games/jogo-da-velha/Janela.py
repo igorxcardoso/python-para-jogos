@@ -19,7 +19,7 @@ class Janela:
     'FHD': (1920, 1080),
     'CUSTOM': (900, 700)
   }
-  screen_resolution: str
+  screen_resolution: None
   color: str
   window_title: str
   mouse: dict
@@ -33,7 +33,10 @@ class Janela:
 
     try:
       # Inicializa a janela 
-      self.configuracao = pygame.display.set_mode(self.RESOLUTIONS[self.screen_resolution])
+      if type(self.screen_resolution) == tuple:
+        self.configuracao = pygame.display.set_mode(self.screen_resolution)
+      else:
+        self.configuracao = pygame.display.set_mode(self.RESOLUTIONS[self.screen_resolution])
 
       # Define o título da janela
       pygame.display.set_caption(title=self.window_title)
@@ -55,6 +58,7 @@ class Janela:
       print('Erro ao criar a janela')
   
   def atualizar(self) -> None:
+    self.verificar_eventos()
     pygame.display.update()
   
   def verificar_eventos(self) -> None:
@@ -85,7 +89,7 @@ class Janela:
 
 
   def informacoes_do_mouse(self) -> None:
-    self.verificar_eventos()
+    
     mouse_position = pygame.mouse.get_pos()
     mouse_input = pygame.mouse.get_pressed()
     mouse_click = self.__mouse_clicou(mouse_input)
