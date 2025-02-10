@@ -1,0 +1,58 @@
+from JogoDaVelha import JogoDaVelha
+from Janela import Janela
+
+
+
+def verifica_fim_de_jogo(matriz_atual):
+  campos_marcados = 0
+  for y in range(3):
+    for x in range(3):
+      if matriz_atual[y][x] != '':
+        campos_marcados += 1
+
+  return True if campos_marcados == 9 else False
+
+
+
+# Inicialização de uma janela
+janela = Janela(
+  resolucao_da_tela=(900, 700),
+  cor_da_janela='branco',
+  titulo_da_janela='Jogo da Velha'
+)
+
+# Inicialização do jogo da velha
+jogo_da_velha = JogoDaVelha()
+
+while True:
+  # Informações do mouse
+  janela.informacoes_do_mouse()
+
+  # Evento de clique no tabuleiro  
+  jogo_da_velha.evento_de_clique(janela)
+
+  # Desenha o tabuleiro
+  matriz = [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ]
+
+  # Desenha o tabuleiro
+  jogo_da_velha.tabuleiro(janela, matriz)
+
+  # Desenha os X e O
+  jogo_da_velha.desenha_x_e_o(janela, 'laranja', 'azul')
+
+  # Matriz atual
+  matriz_atual = jogo_da_velha.matriz_do_tabuleiro
+
+  # Verifica se o jogo acabou
+  jogo_da_velha.fim_do_jogo = verifica_fim_de_jogo(matriz_atual)
+
+  botao_de_novo_jogo = janela.botao((675, 225), (200, 75), 'verde', 'Novo Jogo')
+  botao_de_reiniciar = janela.botao((675, 325), (200, 75), 'laranja', 'Reiniciar')
+  botao_de_sair = janela.botao((695, 600), (150, 75), 'vermelho', 'Sair')
+
+  # Atualiza a janela
+  janela.atualizar()
