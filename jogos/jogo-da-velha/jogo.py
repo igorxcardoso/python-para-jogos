@@ -20,6 +20,9 @@ janela = Janela(resolucao_da_tela='CUSTOM', cor_da_janela='branco', titulo_da_ja
 jogo_da_velha = JogoDaVelha()
 
 while True:
+  # Verifica eventos
+  janela.verificar_eventos()
+
   # Informações do mouse
   janela.informacoes_do_mouse()
 
