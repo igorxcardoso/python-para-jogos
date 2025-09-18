@@ -36,9 +36,9 @@ class JogoDaVelha:
     self.fim_do_jogo = False
 
 
-  def tabuleiro(self, window, matriz, cor='preto'):
+  def tabuleiro(self, window, matriz, cor='preto', modoMatriz=False):
     if self.verifica_matriz(matriz):
-      if self.size == 3:
+      if self.size == 3 and not modoMatriz:
         pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset + 200, self.offset), (self.offset + 200, self.offset + 600), 9)
         pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset + 400, self.offset), (self.offset + 400, self.offset + 600), 9)
         pygame.draw.line(window.configuracao, self.COLORS[cor], (self.offset, self.offset + 200), (self.offset + 600, self.offset + 200), 9)
